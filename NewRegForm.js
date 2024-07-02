@@ -5,33 +5,33 @@ const initialValues = {
   name: '',
   email: '',
   channel: '',
-}
+};
 const onSubmit = (values) => {
   console.log('form values:', values);
-}
-const validate = values => {
-  let errors = {}
-  if(!values.name) {
-    errors.name = 'Required'
+};
+const validate = (values) => {
+  let errors = {};
+  if (!values.name) {
+    errors.name = 'Required';
   }
-  if(!values.email) {
-    errors.email = 'Required'
+  if (!values.email) {
+    errors.email = 'Required';
   } else if (!/^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/i.test(values.email)) {
-    errors.email = 'Invalid format'
+    errors.email = 'Invalid format';
   }
-  if(!values.channel) {
-    errors.channel = 'Required'
+  if (!values.channel) {
+    errors.channel = 'Required';
   }
   return errors;
-}
+};
 let inlineStyle = {
-  color: 'red'
-} 
+  color: 'red',
+};
 export default function NewRegForm() {
   const formik = useFormik({
-    initialValues ,
-    onSubmit ,
-    validate
+    initialValues,
+    onSubmit,
+    validate,
   });
 
   // console.log('errors:', formik.errors);
@@ -39,7 +39,7 @@ export default function NewRegForm() {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <h2>Form in react</h2>
+        <h4>Didn't have an account? Sign up here</h4>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -49,7 +49,9 @@ export default function NewRegForm() {
           onChange={formik.handleChange}
           value={formik.values.name}
         />
-        {formik.errors.name ? <div style={inlineStyle}>{formik.errors.name}</div> : null}
+        {formik.errors.name ? (
+          <div style={inlineStyle}>{formik.errors.name}</div>
+        ) : null}
         <br />
         <label htmlFor="email">Email:</label>
         <input
@@ -60,7 +62,9 @@ export default function NewRegForm() {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
-        {formik.errors.email ? <div style={inlineStyle}>{formik.errors.email}</div> : null}
+        {formik.errors.email ? (
+          <div style={inlineStyle}>{formik.errors.email}</div>
+        ) : null}
         <br />
         <label htmlFor="channel">Channel:</label>
         <input
@@ -71,7 +75,9 @@ export default function NewRegForm() {
           onChange={formik.handleChange}
           value={formik.values.channel}
         />
-        {formik.errors.channel ? <div style={inlineStyle}>{formik.errors.channel}</div> : null}
+        {formik.errors.channel ? (
+          <div style={inlineStyle}>{formik.errors.channel}</div>
+        ) : null}
         <br />
         <button type="submit">Button</button>
       </form>
